@@ -7,7 +7,9 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="tbl_Users")
@@ -23,9 +25,18 @@ public class User extends Base {
     @Column(name = "Password") //Developer, DevOps
     private String password;
 
-    /*@OneToMany(cascade = CascadeType.ALL)*/
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="IdProfile")
     @Column(name="IdProfile")
-    private int idprofile;
+    private Profile IdProfile;*/
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "user_profile",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_profile")
+    )
+    private List<Profile> profiles = new ArrayList<Profile>();
 
     @Column(name = "IdEmployee") //Developer, DevOps
     private int idemployee;
