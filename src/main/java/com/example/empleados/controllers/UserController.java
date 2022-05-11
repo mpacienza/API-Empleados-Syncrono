@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/users")
 public class UserController {
-    //@Autowired
+    @Autowired
     private UserService userService;
 
-    public UserController(UserService userService){
+    /*public UserController(UserService userService){
         this.userService = userService;
-    }
+    }*/
 
     @GetMapping("")
     public ResponseEntity<?> getAll(){

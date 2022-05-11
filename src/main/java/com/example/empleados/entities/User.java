@@ -7,9 +7,10 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name="tbl_profiles")
+@Table(name="tbl_Users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -17,10 +18,10 @@ import javax.persistence.*;
 @Audited
 public class User extends Base {
     @Column(name = "UserName")
-    private int username;
+    private String username;
 
     @Column(name = "Password") //Developer, DevOps
-    private int password;
+    private String password;
 
     /*@OneToMany(cascade = CascadeType.ALL)*/
     @Column(name="IdProfile")
@@ -33,10 +34,10 @@ public class User extends Base {
     private int status;
 
     @Column(name = "CreatedDate") //Developer, DevOps
-    private int createddate;
+    private Date createddate;
 
     @Column(name = "UpdatedDate")
-    private int updateddate;
+    private Date updateddate;
 
     @Column(name = "Login") //Developer, DevOps
     private int login;
