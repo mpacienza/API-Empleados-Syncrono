@@ -1,7 +1,7 @@
 package com.example.empleados.services;
 
-import com.example.empleados.entities.User;
-import com.example.empleados.repositories.UserRepository;
+import com.example.empleados.entities.Profile;
+import com.example.empleados.repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +9,21 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-public class UserService implements BaseService<User> {
+public class ProfileService implements BaseService<Profile> {
     @Autowired
-    private UserRepository userRepository;
+    private ProfileRepository profileRepository;
 
-   /* public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
+    /*public ProfileService(ProfileRepository profileRepository){
+        this.profileRepository = profileRepository;
     }*/
 
     @Override
     @Transactional
-    public List<User> findAll() throws Exception {
+    public List<Profile> findAll() throws Exception {
         try{
-           List<User> entities = userRepository.findAll();
-           return entities;
+            List<Profile> entities = profileRepository.findAll();
+            return entities;
         }catch(Exception e){
             throw new Exception(e.getMessage());
         }
@@ -32,9 +31,9 @@ public class UserService implements BaseService<User> {
 
     @Override
     @Transactional
-    public User findById(Long id) throws Exception {
+    public Profile findById(Long id) throws Exception {
         try{
-            Optional<User> entityOptional = userRepository.findById(id);
+            Optional<Profile> entityOptional = profileRepository.findById(id);
             return entityOptional.get();
         }catch(Exception e){
             throw new Exception(e.getMessage());
@@ -43,9 +42,9 @@ public class UserService implements BaseService<User> {
 
     @Override
     @Transactional
-    public User save(User entity) throws Exception {
+    public Profile save(Profile entity) throws Exception {
         try{
-            entity = userRepository.save(entity);
+            entity = profileRepository.save(entity);
             return entity;
         }catch(Exception e){
             throw new Exception(e.getMessage());
@@ -54,12 +53,12 @@ public class UserService implements BaseService<User> {
 
     @Override
     @Transactional
-    public User update(Long id, User entity) throws Exception {
+    public Profile update(Long id, Profile entity) throws Exception {
         try{
-            Optional<User> entityOptional = userRepository.findById(id);
-            User user = entityOptional.get();
-            user = userRepository.save(entity);
-            return user;
+            Optional<Profile> entityOptional = profileRepository.findById(id);
+            Profile profile = entityOptional.get();
+            profile = profileRepository.save(entity);
+            return profile;
         }catch(Exception e){
             throw new Exception(e.getMessage());
         }
@@ -69,8 +68,8 @@ public class UserService implements BaseService<User> {
     @Transactional
     public boolean delete(Long id) throws Exception {
         try{
-            if(userRepository.existsById(id)){
-                userRepository.deleteById(id);
+            if(profileRepository.existsById(id)){
+                profileRepository.deleteById(id);
                 return true;
             }else {
                 throw new Exception();

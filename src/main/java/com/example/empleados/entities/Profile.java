@@ -19,8 +19,8 @@ import javax.persistence.Table;
 @Audited
 
 public class Profile extends Base{
-    @Column(name = "IdProfile")
-    private int idprofile;
+    @Column(name = "Profile")
+    private String profile;
 
 
 }
