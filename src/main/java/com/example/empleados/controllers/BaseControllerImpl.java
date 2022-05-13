@@ -4,6 +4,7 @@ import com.example.empleados.entities.Base;
 import com.example.empleados.entities.User;
 import com.example.empleados.services.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,17 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Please try again.\"}");
         }
-
     }
+
+    @GetMapping("/paged")
+    public ResponseEntity<?> getAll(Pageable pageable){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(servicio.findAll(pageable));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Please try again.\"}");
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id){
         try{

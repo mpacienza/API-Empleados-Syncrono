@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_profiles")
@@ -17,10 +19,9 @@ import javax.persistence.*;
 @Audited
 
 public class Profile extends Base{
-
+    @Column(name = "IdProfile")
+    private Long id;
 
     @Column(name = "Profile")
     private String profile;
-
-
 }
