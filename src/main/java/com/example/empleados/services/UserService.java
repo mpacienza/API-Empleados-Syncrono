@@ -20,5 +20,11 @@ public class UserService extends BaseServiceImpl<User, Long> {
    public UserService(BaseRepository<User, Long> baseRepository){
         super(baseRepository);
     }
-
+        public List<User> search(String filtro) throws Exception{
+        try {
+            return userRepository.search(filtro);
+        }catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
+        }
 }

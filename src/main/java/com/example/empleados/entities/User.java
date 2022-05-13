@@ -25,18 +25,15 @@ public class User extends Base {
     @Column(name = "Password") //Developer, DevOps
     private String password;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="IdProfile")
-    @Column(name="IdProfile")
-    private Profile IdProfile;*/
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "user_profile",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_profile")
     )
-    private List<Profile> profiles = new ArrayList<Profile>();
+    private List<Profile> profiles = new ArrayList<>();
+    @Column(name="IdProfile")
+    private int idprofile;
 
     @Column(name = "IdEmployee") //Developer, DevOps
     private int idemployee;

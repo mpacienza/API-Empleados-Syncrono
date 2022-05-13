@@ -13,5 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/users")
 public class UserController extends BaseControllerImpl<User, UserService> {
 
-
+@GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam String filtro){
+    try {
+        return  ResponseEntity.status(HttpStatus.OK).body(servicio.search(filtro));
+    }catch (Exception e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"Error\": \""+e.getMessage()+"\"}"));
+    }
+}
 }
