@@ -19,22 +19,22 @@ import java.util.List;
 @Setter
 @Audited
 public class User extends Base {
+
     @Column(name = "UserName")
     private String username;
 
     @Column(name = "Password") //Developer, DevOps
     private String password;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="IdProfile")
-    @Column(name="IdProfile")
-    private Profile IdProfile;*/
+    /*@OneToMany(cascade = CascadeType.ALL)
+    @Column(name="idprofile")
+    private int idprofile;*/
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
-            name = "user_profile",
+            name = "tbl_profiles",
             joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_profile")
+            inverseJoinColumns = @JoinColumn(name = "idprofile")
     )
     private List<Profile> profiles = new ArrayList<Profile>();
 

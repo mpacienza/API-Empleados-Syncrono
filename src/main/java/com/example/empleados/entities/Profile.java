@@ -18,7 +18,6 @@ import javax.persistence.*;
 
 public class Profile extends Base{
 
-
     @Column(name = "Profile")
     private String profile;
 
